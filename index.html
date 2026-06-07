@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科研服务网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* 顶部导航 */
+        .nav {
+            background: #0f3867;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .nav-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        .logo {
+            font-size: 24px;
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .nav-menu a:hover {
+            color: #ffc107;
+        }
+        /* 头部Banner */
+        .banner {
+            background: linear-gradient(rgba(15, 56, 103, 0.85), rgba(15, 56, 103, 0.85)), url("") center/cover no-repeat;
+            padding: 100px 0;
+            text-align: center;
+            color: #fff;
+        }
+        .banner h1 {
+            font-size: 42px;
+            margin-bottom: 20;
+        }
+        .banner p {
+            font-size: 18px;
+            margin: 15px 0 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #ffc107;
+            color: #000;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #e0ab00;
+        }
+        /* 通用板块样式 */
+        .section {
+            padding: 70px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            color: #0f3867;
+            position: relative;
+        }
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: #0f3867;
+            margin: 12px auto 0;
+        }
+        /* 团队介绍 */
+        .team-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .team-card {
+            flex: 1;
+            min-width: 280px;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            text-align: center;
+        }
+        .team-card h3 {
+            font-size: 36px;
+            color: #0f3867;
+            margin-bottom: 10px;
+        }
+        /* 服务分类 */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+        .service-item {
+            background: #fff;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+        }
+        .service-item h4 {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #0f3867;
+        }
+        /* 期刊类目 */
+        .tag-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .tag-item {
+            padding: 10px 22px;
+            background: #e8f0fa;
+            color: #0f3867;
+            border-radius: 30px;
+            font-size: 16px;
+        }
+        /* 服务优势 */
+        .adv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .adv-item {
+            background: #fff;
+            padding: 25px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .adv-item h4 {
+            color: #0f3867;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        /* 服务流程 */
+        .flow-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .flow-item {
+            flex: 1;
+            min-width: 180px;
+            text-align: center;
+            position: relative;
+        }
+        .flow-num {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            background: #0f3867;
+            color: #fff;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            font-weight: bold;
+        }
+        /* 案例板块 */
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+        .case-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        /* 引流板块 */
+        .guide {
+            background: #0f3867;
+            color: #fff;
+            text-align: center;
+            padding: 60px 0;
+        }
+        .guide h2 {
+            margin-bottom: 20px;
+        }
+        /* 页脚 */
+        .footer {
+            background: #111;
+            color: #ccc;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        .footer p {
+            margin: 8px 0;
+        }
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .nav-menu a {
+                margin-left: 15px;
+                font-size: 14px;
+            }
+            .banner h1 {
+                font-size: 28px;
+            }
+            .section-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <div class="nav">
+        <div class="container nav-wrap">
+            <a href="#" class="logo">科研服务平台</a>
+            <div class="nav-menu">
+                <a href="#team">团队介绍</a>
+                <a href="#service">服务项目</a>
+                <a href="#advantage">服务优势</a>
+                <a href="#flow">服务流程</a>
+                <a href="#contact">联系我们</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 头部Banner -->
+    <div class="banner">
+        <div class="container">
+            <h1>专业科研学术一站式辅导</h1>
+            <p>专注论文指导、期刊发表、升学规划，资深师资团队，诚信靠谱，全程一对一服务</p>
+            <a href="#contact" class="btn">立即咨询</a>
+        </div>
+    </div>
+
+    <!-- 团队介绍 -->
+    <div class="section" id="team">
+        <div class="container">
+            <h2 class="section-title">团队实力</h2>
+            <div class="team-wrap">
+                <div class="team-card">
+                    <h3>3+</h3>
+                    <p>博士创始人</p>
+                </div>
+                <div class="team-card">
+                    <h3>3000+</h3>
+                    <p>优质师资团队</p>
+                </div>
+                <div class="team-card">
+                    <h3>99%</h3>
+                    <p>名校师资占比</p>
+                </div>
+                <div class="team-card">
+                    <h3>10年+</h3>
+                    <p>行业服务经验</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 服务项目 -->
+    <div class="section" id="service" style="background: #fff;">
+        <div class="container">
+            <h2 class="section-title">核心服务</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h4>论文写作指导</h4>
+                    <p>本科/硕士/博士论文全程辅导</p>
+                </div>
+                <div class="service-item">
+                    <h4>选题与开题</h4>
+                    <p>结合方向定制优质选题方案</p>
+                </div>
+                <div class="service-item">
+                    <h4>SCI期刊发表</h4>
+                    <p>期刊匹配、润色、投稿指导</p>
+                </div>
+                <div class="service-item">
+                    <h4>保研/申博辅导</h4>
+                    <p>文书撰写、面试指导、规划咨询</p>
+                </div>
+                <div class="service-item">
+                    <h4>论文降重润色</h4>
+                    <p>专业改写、语法修正、格式排版</p>
+                </div>
+                <div class="service-item">
+                    <h4>课程作业辅导</h4>
+                    <p>课程论文、报告、案例分析指导</p>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 60px;">期刊&会议类目</h2>
+            <div class="tag-wrap">
+                <div class="tag-item">SCI一区/二区/三区/四区</div>
+                <div class="tag-item">北大核心</div>
+                <div class="tag-item">南大核心</div>
+                <div class="tag-item">普刊</div>
+                <div class="tag-item">EI会议</div>
+                <div class="tag-item">CCF系列会议</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 服务优势 -->
+    <div class="section" id="advantage">
+        <div class="container">
+            <h2 class="section-title">我们的优势</h2>
+            <div class="adv-grid">
+                <div class="adv-item">
+                    <h4>师资精准匹配</h4>
+                    <p>根据专业、研究方向匹配对应领域资深导师，专业性更强。</p>
+                </div>
+                <div class="adv-item">
+                    <h4>一对一专属服务</h4>
+                    <p>全程专人对接，实时沟通修改，拒绝流水线模板化内容。</p>
+                </div>
+                <div class="adv-item">
+                    <h4>正规协议保障</h4>
+                    <p>签订服务协议，明确权责，保障客户合法权益。</p>
+                </div>
+                <div class="adv-item">
+                    <h4>严格保密机制</h4>
+                    <p>客户资料、文稿全程保密，杜绝信息泄露。</p>
+                </div>
+                <div class="adv-item">
+                    <h4>售后免费修改</h4>
+                    <p>交付后合理范围内免费修改调整，直至满意。</p>
+                </div>
+                <div class="adv-item">
+                    <h4>价格透明合理</h4>
+                    <p>明码标价，无隐形消费，性价比突出。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 服务流程 -->
+    <div class="section" id="flow" style="background: #fff;">
+        <div class="container">
+            <h2 class="section-title">服务流程</h2>
+            <div class="flow-wrap">
+                <div class="flow-item">
+                    <div class="flow-num">1</div>
+                    <h4>咨询沟通</h4>
+                    <p>说明需求、要求与时间</p>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-num">2</div>
+                    <h4>方案报价</h4>
+                    <p>定制方案，确认价格周期</p>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-num">3</div>
+                    <h4>签约付款</h4>
+                    <p>签订协议，启动服务</p>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-num">4</div>
+                    <h4>制作交付</h4>
+                    <p>分段完成，初稿交付</p>
+                </div>
+                <div class="flow-item">
+                    <div class="flow-num">5</div>
+                    <h4>修改定稿</h4>
+                    <p>反馈修改，最终完成</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 客户案例 -->
+    <div class="section">
+        <div class="container">
+            <h2 class="section-title">成功案例</h2>
+            <div class="case-grid">
+                <div class="case-item">
+                    <h4>期刊发表案例</h4>
+                    <p>多学科普刊、核心期刊成功发表案例展示</p>
+                </div>
+                <div class="case-item">
+                    <h4>SCI收录案例</h4>
+                    <p>各区SCI期刊录用、见刊真实案例</p>
+                </div>
+                <div class="case-item">
+                    <h4>升学辅导案例</h4>
+                    <p>保研、申博文书及面试辅导成果</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引流引导 -->
+    <div class="guide">
+        <div class="container">
+            <h2>领取免费学术资料 & 加入交流群</h2>
+            <p>海量论文模板、写作技巧、期刊目录免费领取</p>
+            <a href="#contact" class="btn" style="margin-top:20px;">扫码领取</a>
+        </div>
+    </div>
+
+    <!-- 底部联系我们 -->
+    <div class="footer" id="contact">
+        <div class="container">
+            <h3 style="margin-bottom:20px;">联系我们</h3>
+            <p>微信：xxxxxx</p>
+            <p>邮箱：xxx@xxx.com</p>
+            <p>工作时间：周一至周日 9:00-22:00</p>
+            <div class="copyright">
+                <p>© 2026 科研服务平台 版权所有</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
